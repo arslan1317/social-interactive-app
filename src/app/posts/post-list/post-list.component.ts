@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-post-list',
@@ -11,11 +12,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit, OnDestroy {
-  // posts = [
-  //   {title: 'First Post', content: 'First Post content'},
-  //   {title: 'Second Post', content: 'Second Post content'},
-  //   {title: 'Third Post', content: 'Third Post content'}
-  // ];
+
 
   posts: Post[] = [];
   isLoading = false;
@@ -23,9 +20,11 @@ export class PostListComponent implements OnInit, OnDestroy {
   currentPage = 1;
   postsPerPage = 2;
   pageSizeOption = [1, 2, 5, 10];
+  isUserAuthenticated = false;
   private postsSub: Subscription;
+  private authSub: Subscription;
 
-  constructor(public postsService: PostService) {}
+  constructor(public postsService: PostService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.isLoading = true;

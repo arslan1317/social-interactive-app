@@ -1,0 +1,43 @@
+<div class="limiter">
+  <div class="container-login">
+    <mat-card>
+      <mat-card-title>
+        Signup
+      </mat-card-title>
+      <mat-card-content>
+        <form class="form-container" #signupForm="ngForm" (submit)="onSignup(signupForm)">
+          <mat-form-field color="primary">
+            <input matInput name="name" ngModel type="text" placeholder="Name" #nameInput="ngModel" required>
+            <mat-error *ngIf="nameInput.invalid">
+              Name is required.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field color="primary">
+            <input matInput name="email" ngModel type="text" placeholder="Email" #emailInput="ngModel" required email>
+            <mat-error *ngIf="emailInput.invalid">
+              Email is required.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field color="primary">
+            <input matInput name="password" ngModel type="password" placeholder="Password" #passwordInput="ngModel" required>
+            <mat-error *ngIf="passwordInput.invalid">
+              Password
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field color="primary">
+            <input matInput name="confirm_password" ngModel type="password" placeholder="Confirm Password" #confirm_passwordInput="ngModel" required>
+            <mat-error *ngIf="confirm_passwordInput.invalid">
+              Password
+            </mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button type="submit" color="primary" *ngIf="!isLoading">Signup</button>
+            <span class="spacer"></span>
+            <button mat-raised-button type="button" color="primary" routerLink="/login">Login</button>
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
